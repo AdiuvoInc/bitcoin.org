@@ -1,3 +1,6 @@
+# This file is licensed under the MIT License (MIT) available on
+# http://opensource.org/licenses/MIT.
+
 #alerts.rb generates alert pages using files in _alerts
 #and assign them the 'alert' category.
 
@@ -9,9 +12,9 @@
 #variable is set, allowing a clickable alert banner to be
 #displayed in _layouts/base.html .
 
-#If "alias" variable is set in one alert file, a short alias
+#If "shorturl" variable is set in one alert file, a short alias
 #file for the alert (like /android.html) is generated for
-#Bitcoin-Qt non-clickable alerts.
+#Bitcoin Core non-clickable alerts.
 
 require 'yaml'
 
@@ -23,20 +26,30 @@ module Jekyll
       @base = base
       @dir = '/'+dstdir
       @name = dst
+      extension = dst.split('.')[-1]
       self.process(dst)
       self.read_yaml(File.join(base, srcdir), src)
       self.data['lang'] = lang
       self.data['date'] = date
+      self.data['path'] = srcdir+'/'+src
       self.data['layout'] = 'alert'
       if dstdir == ''
         self.data['canonical'] = '/en/alert/' + src.split('.')[0]
       else
         self.data['category'] = 'alert'
         if self.data.has_key?('banner') and !self.data['banner'].nil? and self.data['banner'].length>0
-          site.config['ALERT']='<a href="/'+dstdir+'/'+dst.gsub('.html','')+'">'+self.data['banner']+'</a>'
+          site.config['ALERT']=self.data['banner']
+          site.config['ALERTURL']='/'+dstdir+'/'+dst.gsub('.html','').gsub('.md','')
+          if self.data.has_key?('bannerclass') and !self.data['bannerclass'].nil? and self.data['bannerclass'].length>0
+            site.config['ALERTCLASS'] = self.data['bannerclass']
+          end
         end
-        if self.data.has_key?('alias')
-          site.pages << AlertPage.new(site, base, lang, srcdir, src, '', self.data['alias']+'.html', date)
+        if self.data.has_key?('active') and !self.data['active'].nil? and self.data['active'] == true
+          site.config['STATUS'] = 1
+        end
+        if self.data.has_key?('shorturl')
+          site.pages << AlertPage.new(site, base, lang, srcdir, src, '', self.data['shorturl']+'.'+extension, date)
+          site.pages << AlertPage.new(site, base, lang, srcdir, src, '', self.data['shorturl']+'/index.'+extension, date)
         end
       end
     end
@@ -44,7 +57,14 @@ module Jekyll
 
   class AlertPageGenerator < Generator
     def generate(site)
-      #generate each alert based on templates
+      #Generate each alert based on templates
+      site.config['STATUS'] = 0
+      site.config['ALERTCLASS'] = 'alert'
+      #Do nothing if plugin is disabled
+      if !ENV['ENABLED_PLUGINS'].nil? and ENV['ENABLED_PLUGINS'].index('alerts').nil?
+        print 'Alerts disabled' + "\n"
+        return
+      end
       Dir.foreach('_alerts') do |file|
         next if file == '.' or file == '..'
         lang = 'en'

@@ -1,65 +1,77 @@
 ---
+# This file is licensed under the MIT License (MIT) available on
+# http://opensource.org/licenses/MIT.
+
 layout: base
 id: you-need-to-know 
 ---
 <h1>{% translate pagetitle %}</h1>
 <p class="summarytxt">{% translate summary %}</p>
 
-<h2><img class="titleicon" src="/img/ico_key.svg" alt="Icon" />{% translate secure %}</h2>
-{% case page.lang %}
-{% when 'ar' %}
-<p>كما في ألعالم ألحقيقي, محفظتك يجب أن تكون بأمان. دائما تذكر أنه من مسؤوليتك أن تتخذ ألإجراءات أللازمة لحماية نقودك. هذه بعض ألخيارات ألتي يجب أن تفكر بها.</p>
-
-<div class="box">
-<h3>أخذ نسخ إحتياطية لمحفظتك</h3>
-<p>خدمات ألبت كوين و ألبرمجيات تسمح لك بأخذ نسخ إحتياطية لمحفظتك, ألتي يمكنك أن تطبعها على ورق أو تخزنها في سواقة USB. عند خزنها في مكان أمن, ألنسخة ألإحتياطية تستطيع أن تحميك من عطل جهاز ألكمبيوتر و ألعديد من ألأخطاء ألبشرية.</p>
-
-<h3>تشفير محفظتك</h3>
-<p>تشفير محفظتك يسمح لك بأن تضع كلمة سرية لأي شخص يحاول أن يسحب أي مقدار من ألأموال. هذا يساعد ضد ألسارقين و ألمخترقين, مع أنها لا تقدر أن تحميك ضد ألمعدات أو ألبرمجيات ألمسجلة للمفاتيح. مع هذا, يجب عليك أن تتأكد من أن لا تنسى ألكلمة ألسرية أبدا لأن عندئذ كل أموالك سوف تضيع للأبد. بعكس ألبنك, ليس هنالك خيار إستعادة ألكلمة ألسرية مع ألبت كوين!.</p>
-
-<h3>إتخذ ألحذر مع ألمحفظات على ألأنترنت</h3>
-<p>إستخدام محفظة على ألأنترنت يماثل إستخدام بنك على ألإنترنت. أنت تثق بشخص أخر لحماية أموالك مع أنك يجب أن تتذكر و تحمي كلمتك ألسرية. يجب عليك دائما أن تختار هكذا خدمات بحذر. حيث حتى ألأن, لا يوجد محفظة على ألأنترنت ممكن أن توفر لك ضمان كافي و حماية لكي يتم إستخدامها لخزن ألمبلغ كألبنك.</p>
-
-<h3>إستخدم نسخة إحتياطية دون أتصال بألإنترنت للمدخرات</h3>
-<p>ألنسخة ألإحتياطية دون إتصال بألإنترنت تؤمن أعلى مستوى من ألأمن للمدخرات. إنها تتضمن خزن ألمحفظة فقط على ألورق أو على مفاتيح ألUSB في مواقع أمينة مختلفة غير متصلة على ألشبكة. هذه حماية جيدة ضد فشل أجهزة ألكمبيوتر, نقاط ضعف أجهزة ألكمبيوتر, ألسرقة و ألأخطاء ألبشرية. حتى أليوم, هذه ألمقاربة لا تزال تتطلب بعض ألمعرفة ألتقنية لكي تتم بشكل صحيح.</p>
-</div>
-{% when 'es' %}
-<p>Al igual que en la vida real, su monedero debe estar asegurado. Siempre recuerde que es su responsabilidad adoptar buenas prácticas con el fin de proteger su dinero. Estas son algunas de las opciones que usted debe considerar.</p>
-
-<div class="box">
-<h3>Respalde su monedero</h3>
-<p>Los servicios y programas relacionados con Bitcoin permiten realizar respaldos de su monedero, que se puede imprimir en papel o guardar en una unidad USB. Almacenándolos en un lugar seguro, un respaldo puede protegerlo contra cualquier falla de su computador y muchos errores humanos.</p>
-
-<h3>Encripte su monedero</h3>
-<p>Encriptar su monedero le permite establecer una contraseña para evitar que cualquiera trate de retirar los fondos. Esto le ayuda a protegerse contra ladrones y hackers, aunque no se puede proteger contra equipos o programas capturadores de teclado. Sin embargo, usted debe asegurarse de que nunca se le olvida la contraseña o sino sus fondos podrían perderse permanentemente. A diferencia de su banco, no hay opciones de recuperación de la contraseña con Bitcoin!</p>
-
-<h3>Tenga cuidado con los monederos en línea</h3>
-<p>Usar un monedero en línea es más o menos como usar un banco en línea. Usted está confiando en alguien más para proteger su dinero mientras que usted tiene que recordar y proteger la contraseña. Usted siempre debe elegir cuidadosamente estos servicios. Al día de hoy, ningún provedor de servicios de monedero web proporciona suficiente seguridad para almacenar sus valores como en un banco.</p>
-
-<h3>Use respaldos fuera de línea para su seguridad</h3>
-<p>Un resplado sin conexión de su monedero proporciona el más alto nivel de seguridad para su dinero. Requiere almacenar su monedero en papel y/o en llaves USB en diferentes lugares seguros que no están conectados a la red. Esta es una buena protección contra fallos informáticos, vulnerabilidades informáticas, robos y errores humanos. Al día de hoy, esta práctica require un cierto conocimiento técnico para realizarse correctamente.</p>
-</div>
-{% else %}
+<h2 id="secure"><img class="titleicon" src="/img/icons/ico_key.svg" alt="Icon" />{% translate secure %}</h2>
 <p>{% translate securetxt %}</p>
-{% endcase %}
-<h2><img class="titleicon" src="/img/ico_market.svg" alt="Icon" />{% translate volatile %}</h2>
+
+<h2 id="volatile"><img class="titleicon" src="/img/icons/ico_market.svg" alt="Icon" />{% translate volatile %}</h2>
 <p>{% translate volatiletxt %}</p>
 
-<h2><img class="titleicon" src="/img/ico_irreversible.svg" alt="Icon" />{% translate irreversible %}</h2>
+<h2 id="irreversible"><img class="titleicon" src="/img/icons/ico_irreversible.svg" alt="Icon" />{% translate irreversible %}</h2>
 <p>{% translate irreversibletxt %}</p>
 
-<h2><img class="titleicon" src="/img/ico_anon.svg" alt="Icon" />{% translate anonymous %}</h2>
+<h2 id="anonymous"><img class="titleicon" src="/img/icons/ico_anon.svg" alt="Icon" />{% translate anonymous %}</h2>
 <p>{% translate anonymoustxt %}</p>
 
-{% case page.lang %}
-{% when 'ar' or 'es' or 'fa' %}
-{% else %}
-<h2><img class="titleicon" src="/img/ico_fast.svg" alt="Icon" />{% translate instant %}</h2>
+<h2 id="instant"><img class="titleicon" src="/img/icons/ico_fast.svg" alt="Icon" />{% translate instant %}</h2>
 <p>{% translate instanttxt %}</p>
+
+{% case page.lang %}
+{% when 'id' or 'da' or 'de' or 'es' or 'fr' or 'it' or 'hu' or 'nl' or 'pl' or 'pt_BR' or 'ro' or 'sl' or 'sv' or 'tr' or 'el' or 'bg' or 'ru' or 'uk' or 'ar' or 'fa' or 'hi' or 'ko' or 'ja' or 'zh_CN' or 'zh_TW' %}
+{% else %}
+{% comment %}
+<!-- In the table below, not making arabic numerals a translated string
+     so that we can easily change them if confirmations become more or
+     less reliable. -->
+{% endcomment %}
+
+<br>
+<table class="center">
+  <tr>
+    <th>{% translate confirmations %}</th>
+    <th>{% translate lightweight_wallets %}</th>
+    <th>{% translate bitcoin_core %}</th>
+  </tr>
+
+  <tr>
+    <th>0</th>
+    <td colspan="2">{% translate unconfirmed_only_safe %}</td>
+  </tr>
+
+  <tr>
+    <th>1</th>
+    <td>{% translate somewhat_reliable %}</td>
+    <td>{% translate mostly_reliable %}</td>
+  </tr>
+
+  <tr>
+    <th>3</th>
+    <td>{% translate mostly_reliable %}</td>
+    <td>{% translate highly_reliable %}</td>
+  </tr>
+
+  <tr>
+    <th>6</th>
+    <td colspan="2">{% translate high_value_minimum %}</td>
+  </tr>
+
+  <tr>
+    <th>30</th>
+    <td colspan="2">{% translate alert_recommendation %}</td>
+  </tr>
+</table>
+<br>
 {% endcase %}
 
-<h2><img class="titleicon" src="/img/ico_lab.svg" alt="Icon" />{% translate experimental %}</h2>
+<h2 id="experimental"><img class="titleicon" src="/img/icons/ico_lab.svg" alt="Icon" />{% translate experimental %}</h2>
 <p>{% translate experimentaltxt %}</p>
 
-<h2><img class="titleicon" src="/img/ico_invoice.svg" alt="Icon" />{% translate tax %}</h2>
+<h2 id="tax"><img class="titleicon" src="/img/icons/ico_invoice.svg" alt="Icon" />{% translate tax %}</h2>
 <p>{% translate taxtxt %}</p>

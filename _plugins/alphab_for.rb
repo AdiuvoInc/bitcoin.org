@@ -1,3 +1,6 @@
+# This file is licensed under the MIT License (MIT) available on
+# http://opensource.org/licenses/MIT.
+
 #alphab_for allows to loop in an array sorted by the translated value of
 #each key using appropriate collation for the current language. In short,
 #this is used to generate translated table of contents.
@@ -14,12 +17,14 @@ module Jekyll
 
   module AlphabForImpl
     def render(context)
-      #load translations files
+      #Load translations
       site = context.registers[:site].config
       if !site.has_key?("loc")
         site['loc'] = {}
-        site['langs'].each do |key,value|
-          site['loc'][key] = YAML.load_file('_translations/'+key+'.yml')[key]
+        Dir.foreach('_translations') do |file|
+          next if file == '.' or file == '..' or file == 'COPYING'
+          lang=file.split('.')[0]
+          site['loc'][lang] = YAML.load_file('_translations/'+file)[lang]
         end
       end
       #load collection and context variables
